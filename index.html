@@ -1,32 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sunrise Insights</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #f6d365, #fda085);
-      color: #fff;
-      text-align: center;
+    /* Reset and base styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; }
+
+    /* Sticky header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 50px;
+      margin-right: 10px;
+    }
+    .logo-text {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+    }
+    .logo-text span:first-child {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+    .logo-text span:last-child {
+      font-size: 20px;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      color: #0077cc;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding-bottom: 4px;
+    }
+    nav a.active {
+      border-bottom: 2px solid #0077cc;
+    }
+
+    section {
+      padding: 100px 40px;
+      margin-top: 80px;
       height: 100vh;
     }
     h1 {
-      font-size: 3em;
-    }
-    p {
-      font-size: 1.5em;
-      margin-top: -10px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>Sunrise Insights</h1>
-  <p>We’re coming soon. Rise with us.</p>
+
+<header>
+  <div class="logo">
+    <img src="Sunriselogo-removebg-preview.png" alt="Sunrise Insights Logo">
+    <div class="logo-text">
+      <span>Sunrise</span>
+      <span>Insights</span>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a href="#about" class="nav-link">About Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="home">
+  <h1>Welcome to Sunrise Insights</h1>
+  <p>Your journey into data and clarity begins here.</p>
+</section>
+
+<section id="projects">
+  <h1>Our Projects</h1>
+  <p>Explore what we’ve worked on and how we bring insight into action.</p>
+</section>
+
+<section id="contact">
+  <h1>Contact Us</h1>
+  <p>Let's connect! Reach out for collaborations or queries.</p>
+</section>
+
+<section id="about">
+  <h1>About Us</h1>
+  <p>We’re a team passionate about data, insights, and impact.</p>
+</section>
+
+<script>
+  // Highlight active section in navbar
+  const navLinks = document.querySelectorAll(".nav-link");
+  window.addEventListener("scroll", () => {
+    const fromTop = window.scrollY + 100;
+    navLinks.forEach(link => {
+      const section = document.querySelector(link.getAttribute("href"));
+      if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
