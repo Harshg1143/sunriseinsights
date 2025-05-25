@@ -5,59 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sunrise Insights</title>
   <link rel="icon" href="favicon.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       scroll-behavior: smooth;
+      transition: all 0.4s ease;
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: #f7f9fc;
-      color: #222;
-      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+      background-color: #0f0f0f;
+      color: #eaeaea;
+      overflow-x: hidden;
+    }
+
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0f0f0f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #loader span {
+      font-size: 2rem;
+      color: #ff6b00;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.2); opacity: 1; }
     }
 
     header {
       position: fixed;
-      top: 0;
+      top: 0; left: 0;
       width: 100%;
-      background: #fff;
+      background: #1a1a1a;
+      padding: 16px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     .logo {
-      font-size: 1.6rem;
-      font-weight: 600;
+      font-size: 1.8rem;
+      font-weight: 700;
       color: #ff6b00;
     }
 
     nav a {
       margin-left: 24px;
       text-decoration: none;
-      color: #222;
-      font-weight: 500;
+      color: #eaeaea;
+      font-weight: 600;
       position: relative;
     }
 
     nav a::after {
       content: '';
       position: absolute;
+      bottom: -4px;
       left: 0;
-      bottom: -6px;
-      width: 0;
+      width: 0%;
       height: 2px;
       background: #ff6b00;
-      transition: width 0.3s;
+      transition: width 0.3s ease;
     }
 
     nav a:hover::after {
@@ -65,96 +88,68 @@
     }
 
     section {
-      padding: 120px 40px 60px;
-      max-width: 1200px;
-      margin: auto;
+      padding: 100px 20px 60px;
+      min-height: 100vh;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.7s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero {
       text-align: center;
-      padding: 180px 20px 100px;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 20px;
-      color: #ff6b00;
+      color: #ffffff;
     }
 
     .hero p {
       font-size: 1.2rem;
-      color: #555;
-      max-width: 700px;
-      margin: auto;
+      color: #ccc;
     }
 
-    .projects-grid {
+    .image-grid {
+      margin-top: 40px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
 
-    .project-card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-8px);
-    }
-
-    .project-image {
+    .image-grid img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
     }
 
-    .project-info {
-      padding: 20px;
-      font-weight: 600;
-      color: #222;
-    }
-
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      margin: 12px 0;
-      padding: 14px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-    }
-
-    .contact-form button {
-      background: #ff6b00;
-      color: #fff;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 32px;
+      text-align: center;
+      color: #ff6b00;
     }
 
     footer {
+      padding: 24px;
       text-align: center;
-      padding: 40px 20px;
-      color: #888;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav {
-        margin-top: 10px;
-      }
+      background: #1a1a1a;
+      color: #999;
     }
   </style>
 </head>
 <body>
+  <div id="loader"><span>Loading...</span></div>
+
   <header>
     <div class="logo">Sunrise Insights</div>
     <nav>
@@ -165,54 +160,62 @@
     </nav>
   </header>
 
-  <section class="hero" id="home" data-aos="fade-up">
-    <h1>Data That Drives Growth</h1>
-    <p>We help startups and small businesses scale using insights from modern data analytics.</p>
-  </section>
-
-  <section id="projects" data-aos="fade-up">
-    <h2>Our Projects</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <img class="project-image" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" />
-        <div class="project-info">Sales Analytics</div>
-      </div>
-      <div class="project-card">
-        <img class="project-image" src="https://images.unsplash.com/photo-1503424886301-97e102a7b462" />
-        <div class="project-info">Market Research</div>
-      </div>
-      <div class="project-card">
-        <img class="project-image" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" />
-        <div class="project-info">Customer Insights</div>
+  <section id="home">
+    <div class="hero">
+      <h1>Data-Driven Growth</h1>
+      <p>Empowering startups and businesses through insightful analytics and custom solutions.</p>
+      <div class="image-grid">
+        <img src="https://images.unsplash.com/photo-1605902711622-cfb43c4437d1?auto=format&fit=crop&w=800&q=80" />
+        <img src="https://images.unsplash.com/photo-1611971263681-b7f1215f84aa?auto=format&fit=crop&w=800&q=80" />
       </div>
     </div>
   </section>
 
-  <section id="contact" data-aos="fade-up">
-    <h2>Contact Us</h2>
-    <p>Email us at <a href="mailto:harsh@sunriseinsights.in">harsh@sunriseinsights.in</a></p>
-    <form class="contact-form">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
+  <section id="projects">
+    <h2 class="section-title">Our Projects</h2>
+    <div class="image-grid">
+      <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=800&q=80" alt="Sales Analytics" />
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Market Research" />
+      <img src="https://images.unsplash.com/photo-1614064641938-c2b6f1901b8c?auto=format&fit=crop&w=800&q=80" alt="Customer Insights" />
+    </div>
   </section>
 
-  <section id="about" data-aos="fade-up">
-    <h2>About Us</h2>
-    <p>Sunrise Insights is a data analytics startup built to empower businesses with actionable insights. We specialize in custom dashboards, growth metrics, and predictive strategies.</p>
+  <section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="hero">
+      <p>Email: <a href="mailto:harsh@sunriseinsights.in" style="color:#ff6b00">harsh@sunriseinsights.in</a></p>
+      <p>Phone: +91 9173159232</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Sunrise Insights</h2>
+    <div class="hero">
+      <p>We are a data analytics startup focused on delivering actionable insights. We partner with small businesses and startups to drive growth and efficiency through modern analytics tools and research methodologies.</p>
+    </div>
   </section>
 
   <footer>
     &copy; 2025 Sunrise Insights. All rights reserved.
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 800,
-      once: true,
+    // Loader
+    window.addEventListener("load", () => {
+      document.getElementById("loader").style.display = "none";
+    });
+
+    // Intersection Observer for page transition
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll("section").forEach(section => {
+      observer.observe(section);
     });
   </script>
 </body>
