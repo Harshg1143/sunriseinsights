@@ -5,15 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sunrise Insights</title>
   <link rel="icon" href="favicon.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    :root {
-      --primary-color: #ff6b00;
-      --secondary-color: #fff7e6;
-      --bg-color: #f5f7fa;
-      --text-color: #333;
-    }
-
     * {
       margin: 0;
       padding: 0;
@@ -23,8 +17,8 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background: #f7f9fc;
+      color: #222;
       line-height: 1.6;
     }
 
@@ -32,93 +26,66 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background-color: #ffffffcc;
-      backdrop-filter: blur(10px);
+      background: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 32px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      padding: 20px 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       z-index: 1000;
     }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-container img {
-      height: 40px;
-      margin-right: 10px;
-    }
-
-    .logo-container h1 {
+    .logo {
       font-size: 1.6rem;
-    }
-
-    .simple {
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .cool {
-      font-family: 'Pacifico', cursive;
-      margin-left: 6px;
-      color: var(--primary-color);
+      font-weight: 600;
+      color: #ff6b00;
     }
 
     nav a {
       margin-left: 24px;
       text-decoration: none;
-      color: var(--text-color);
-      font-weight: 600;
+      color: #222;
+      font-weight: 500;
       position: relative;
     }
 
     nav a::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       bottom: -6px;
       width: 0;
       height: 2px;
-      background-color: var(--primary-color);
-      transition: 0.3s;
+      background: #ff6b00;
+      transition: width 0.3s;
     }
 
-    nav a:hover::after,
-    nav a.active::after {
+    nav a:hover::after {
       width: 100%;
     }
 
     section {
-      padding: 120px 20px 80px;
+      padding: 120px 40px 60px;
       max-width: 1200px;
       margin: auto;
-      animation: fadeIn 0.8s ease-in-out;
     }
 
-    .section-content {
-      background: white;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
-      animation: slideUp 0.5s ease;
+    .hero {
+      text-align: center;
+      padding: 180px 20px 100px;
     }
 
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    h2 {
-      font-size: 2rem;
-      color: var(--primary-color);
+    .hero h1 {
+      font-size: 3rem;
       margin-bottom: 20px;
+      color: #ff6b00;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 700px;
+      margin: auto;
     }
 
     .projects-grid {
@@ -128,15 +95,15 @@
     }
 
     .project-card {
-      background: var(--secondary-color);
-      border-radius: 12px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
       overflow: hidden;
       transition: transform 0.3s ease;
-      box-shadow: 0 8px 16px rgba(255, 107, 0, 0.2);
     }
 
     .project-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px);
     }
 
     .project-image {
@@ -145,47 +112,35 @@
       object-fit: cover;
     }
 
-    .project-name {
-      padding: 16px;
-      text-align: center;
+    .project-info {
+      padding: 20px;
       font-weight: 600;
-      color: var(--primary-color);
+      color: #222;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    input, textarea {
-      padding: 12px;
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      margin: 12px 0;
+      padding: 14px;
+      border: 1px solid #ddd;
       border-radius: 8px;
-      border: 1.5px solid #ccc;
-      font-size: 1rem;
     }
 
-    button {
-      padding: 12px;
-      background: var(--primary-color);
-      color: white;
+    .contact-form button {
+      background: #ff6b00;
+      color: #fff;
+      padding: 12px 24px;
       border: none;
-      font-size: 1.1rem;
-      font-weight: 600;
       border-radius: 8px;
+      font-weight: 600;
       cursor: pointer;
-    }
-
-    button:hover {
-      background: #e05a00;
     }
 
     footer {
       text-align: center;
-      padding: 24px;
+      padding: 40px 20px;
+      color: #888;
       font-size: 0.9rem;
-      background: #fff;
-      color: #666;
     }
 
     @media (max-width: 768px) {
@@ -201,90 +156,63 @@
 </head>
 <body>
   <header>
-    <div class="logo-container">
-      <img src="Sunriselogo-removebg-preview.png" alt="Logo" />
-      <h1><span class="simple">Sunrise</span><span class="cool"> Insights</span></h1>
-    </div>
+    <div class="logo">Sunrise Insights</div>
     <nav>
-      <a href="#home" class="active">Home</a>
+      <a href="#home">Home</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
       <a href="#about">About</a>
     </nav>
   </header>
 
-  <section id="home">
-    <div class="section-content">
-      <h2>Welcome to Sunrise Insights</h2>
-      <p>We empower startups and small businesses by transforming raw data into actionable insights using modern analytics techniques.</p>
-    </div>
+  <section class="hero" id="home" data-aos="fade-up">
+    <h1>Data That Drives Growth</h1>
+    <p>We help startups and small businesses scale using insights from modern data analytics.</p>
   </section>
 
-  <section id="projects">
-    <div class="section-content">
-      <h2>Our Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <img class="project-image" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" />
-          <div class="project-name">Sales Analytics</div>
-        </div>
-        <div class="project-card">
-          <img class="project-image" src="https://images.unsplash.com/photo-1503424886301-97e102a7b462?auto=format&fit=crop&w=600&q=80" />
-          <div class="project-name">Market Research</div>
-        </div>
-        <div class="project-card">
-          <img class="project-image" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=600&q=80" />
-          <div class="project-name">Customer Insights</div>
-        </div>
+  <section id="projects" data-aos="fade-up">
+    <h2>Our Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img class="project-image" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" />
+        <div class="project-info">Sales Analytics</div>
+      </div>
+      <div class="project-card">
+        <img class="project-image" src="https://images.unsplash.com/photo-1503424886301-97e102a7b462" />
+        <div class="project-info">Market Research</div>
+      </div>
+      <div class="project-card">
+        <img class="project-image" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" />
+        <div class="project-info">Customer Insights</div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
-    <div class="section-content">
-      <h2>Contact Us</h2>
-      <p>Phone: +91 9173159232</p>
-      <p>Email: <a href="mailto:harsh@sunriseinsights.in">harsh@sunriseinsights.in</a></p>
-      <form>
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <p>Email us at <a href="mailto:harsh@sunriseinsights.in">harsh@sunriseinsights.in</a></p>
+    <form class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
   </section>
 
-  <section id="about">
-    <div class="section-content">
-      <h2>About Us</h2>
-      <p>Founded with a vision to democratize data, Sunrise Insights focuses on helping early-stage ventures scale with the power of analytics. We specialize in market analysis, predictive modeling, and custom dashboards tailored for your business needs.</p>
-    </div>
+  <section id="about" data-aos="fade-up">
+    <h2>About Us</h2>
+    <p>Sunrise Insights is a data analytics startup built to empower businesses with actionable insights. We specialize in custom dashboards, growth metrics, and predictive strategies.</p>
   </section>
 
   <footer>
     &copy; 2025 Sunrise Insights. All rights reserved.
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    const navLinks = document.querySelectorAll("nav a");
-    const sections = document.querySelectorAll("section");
-
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.offsetHeight;
-        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-          current = section.getAttribute("id");
-        }
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === `#${current}`) {
-          link.classList.add("active");
-        }
-      });
+    AOS.init({
+      duration: 800,
+      once: true,
     });
   </script>
 </body>
