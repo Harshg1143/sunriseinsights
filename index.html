@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,7 +7,7 @@
   <link rel="icon" href="favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset & base */
+    /* Reset & basics */
     * {
       margin: 0; padding: 0; box-sizing: border-box;
       scroll-behavior: smooth;
@@ -18,19 +18,22 @@
       background-color: #0f0f0f;
       color: #eaeaea;
       overflow-x: hidden;
+      min-height: 100vh;
     }
     a {
       color: #ff6b00;
       text-decoration: none;
+      font-weight: 600;
     }
     a:hover {
       text-decoration: underline;
     }
 
-    /* Loader */
+    /* Preloader */
     #loader {
       position: fixed;
-      inset: 0;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       background: #0f0f0f;
       display: flex;
       justify-content: center;
@@ -41,6 +44,8 @@
       font-size: 2rem;
       color: #ff6b00;
       animation: pulse 1.5s infinite ease-in-out;
+      font-weight: 700;
+      letter-spacing: 0.15em;
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 0.7; }
@@ -52,123 +57,145 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      padding: 24px 48px;
+      background: rgba(26,26,26,0.85);
+      padding: 16px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 10000;
-      background: transparent;
-      color: #ff6b00;
-      font-weight: 700;
-      font-size: 1.8rem;
-      letter-spacing: 0.06em;
-      transition: background 0.4s ease, box-shadow 0.4s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      backdrop-filter: saturate(180%) blur(12px);
+      transition: background 0.3s ease;
     }
     header.scrolled {
       background: #1a1a1a;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      box-shadow: 0 5px 18px rgba(255,107,0,0.35);
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ff6b00;
+      letter-spacing: 0.06em;
+      cursor: default;
+      user-select: none;
     }
     nav a {
-      margin-left: 32px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #eaeaea;
+      margin-left: 28px;
       position: relative;
-      padding-bottom: 4px;
+      font-weight: 600;
+      color: #eaeaea;
+      padding: 4px 0;
     }
     nav a::after {
       content: '';
       position: absolute;
-      left: 0; bottom: 0;
-      width: 0;
-      height: 2px;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 3px;
       background: #ff6b00;
+      border-radius: 3px;
       transition: width 0.3s ease;
     }
-    nav a:hover::after {
+    nav a:hover::after,
+    nav a:focus::after {
       width: 100%;
     }
 
-    /* Hero */
-    .hero {
+    /* Hero Section with video background */
+    #home {
       position: relative;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      overflow: hidden;
+      color: #fff;
       text-align: center;
-      color: white;
-      z-index: 1;
     }
-    .hero video {
+    #home video#bg-video {
       position: absolute;
-      top: 50%; left: 50%;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
       transform: translate(-50%, -50%);
-      filter: brightness(0.35);
+      object-fit: cover;
+      filter: brightness(0.45) saturate(1.2);
       z-index: -1;
+      pointer-events: none;
     }
-    .hero-content {
-      max-width: 720px;
-      padding: 0 24px;
+    #home .hero-content {
+      max-width: 800px;
+      z-index: 10;
+      backdrop-filter: saturate(180%) blur(8px);
+      background: rgba(15,15,15,0.6);
+      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: 0 6px 24px rgba(255,107,0,0.25);
     }
-    .hero-content h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
+    #home h1 {
+      font-size: 3.2rem;
       margin-bottom: 20px;
-      text-shadow: 0 0 12px rgba(255,107,0,0.8);
-    }
-    .hero-content p {
-      font-size: 1.3rem;
-      color: #f0f0f0cc;
-      margin-bottom: 40px;
-      line-height: 1.5;
-      text-shadow: 0 0 6px rgba(0,0,0,0.8);
-    }
-    .btn-primary {
-      background: #ff6b00;
-      color: #0f0f0f;
       font-weight: 700;
-      padding: 14px 36px;
-      border: none;
-      border-radius: 30px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      box-shadow: 0 6px 16px rgba(255, 107, 0, 0.6);
-      transition: background 0.3s ease;
+      color: #ff6b00;
+      text-shadow: 0 0 6px rgba(255,107,0,0.9);
+      letter-spacing: 0.04em;
     }
-    .btn-primary:hover {
-      background: #e45a00;
-      box-shadow: 0 8px 20px rgba(228, 90, 0, 0.8);
+    #home p {
+      font-size: 1.3rem;
+      color: #eaeaea;
+      margin-bottom: 36px;
+      line-height: 1.5;
+      font-weight: 500;
+      text-shadow: 0 0 6px rgba(0,0,0,0.7);
+    }
+    #home button.cta-btn {
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: #ff6b00;
+      color: #fff;
+      border: none;
+      padding: 16px 36px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(255,107,0,0.7);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    #home button.cta-btn:hover {
+      background: #ff8a24;
+      box-shadow: 0 8px 24px rgba(255,138,36,0.9);
     }
 
     /* Sections */
     section {
-      padding: 80px 20px 100px;
-      max-width: 1200px;
-      margin: 0 auto;
+      padding: 100px 20px 60px;
+      min-height: 100vh;
       opacity: 0;
       transform: translateY(40px);
       transition: all 0.7s ease-out;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     section.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
     .section-title {
       font-size: 2.8rem;
-      font-weight: 700;
-      text-align: center;
       margin-bottom: 48px;
+      text-align: center;
       color: #ff6b00;
+      font-weight: 700;
       letter-spacing: 0.05em;
-      text-transform: uppercase;
+      text-shadow: 0 0 4px rgba(255,107,0,0.8);
     }
 
-    /* Grid */
+    /* Image grid styling */
     .image-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -179,66 +206,83 @@
       height: 220px;
       object-fit: cover;
       border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
       cursor: pointer;
     }
     .image-grid img:hover {
       transform: scale(1.05);
+      box-shadow: 0 14px 28px rgba(255,107,0,0.7);
     }
 
-    /* Contact */
-    #contact .contact-info {
-      max-width: 480px;
+    /* Contact section text */
+    #contact .hero {
+      max-width: 600px;
       margin: 0 auto;
-      text-align: center;
-      font-size: 1.15rem;
-      line-height: 1.8;
+      font-size: 1.2rem;
+      line-height: 1.6;
       color: #ddd;
+      font-weight: 500;
+      text-align: center;
     }
-    #contact .contact-info a {
+    #contact a {
       color: #ff6b00;
       font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    #contact a:hover {
+      color: #ffa64d;
+      text-decoration: underline;
     }
 
-    /* About */
-    #about .about-text {
-      max-width: 700px;
+    /* About Section */
+    #about .hero {
+      max-width: 720px;
       margin: 0 auto;
-      font-size: 1.15rem;
-      line-height: 1.8;
-      color: #ccc;
+      font-size: 1.25rem;
+      color: #ddd;
+      font-weight: 500;
+      line-height: 1.7;
       text-align: center;
     }
 
     /* Footer */
     footer {
-      padding: 36px 20px;
-      background: #1a1a1a;
+      padding: 24px;
       text-align: center;
+      background: #1a1a1a;
       color: #999;
       font-size: 0.9rem;
-      letter-spacing: 0.05em;
+      user-select: none;
+      box-shadow: inset 0 1px 3px rgba(255,255,255,0.05);
     }
 
     /* Responsive tweaks */
-    @media (max-width: 600px) {
-      .hero-content h1 {
-        font-size: 2.6rem;
+    @media (max-width: 480px) {
+      #home h1 {
+        font-size: 2.2rem;
       }
-      .hero-content p {
+      #home p {
         font-size: 1rem;
       }
+      section {
+        padding: 80px 15px 40px;
+      }
       nav a {
-        margin-left: 16px;
-        font-size: 0.9rem;
+        margin-left: 18px;
+        font-size: 0.95rem;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- Preloader -->
   <div id="loader"><span>Loading...</span></div>
 
+  <!-- Header -->
   <header>
     <div class="logo">Sunrise Insights</div>
     <nav>
@@ -249,71 +293,80 @@
     </nav>
   </header>
 
-  <section id="home" class="hero">
-    <video autoplay muted loop playsinline src="https://cdn.videvo.net/videvo_files/video/free/2017-05/small_watermarked/170408_04_Business_Steam_Videvo_preview.webm"></video>
+  <!-- Hero with background video -->
+  <section id="home">
+    <video autoplay muted loop playsinline id="bg-video" poster="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1280&q=80">
+      <source src="https://cdn.videvo.net/videvo_files/video/free/2017-10/small_watermarked/171004_05_Airplane_04_preview.webm" type="video/webm" />
+      <source src="https://cdn.videvo.net/videvo_files/video/free/2017-10/small_watermarked/171004_05_Airplane_04_preview.mp4" type="video/mp4" />
+      <!-- fallback image if no video -->
+      Your browser does not support the video tag.
+    </video>
     <div class="hero-content">
       <h1>Data-Driven Growth</h1>
       <p>Empowering startups and businesses through insightful analytics and custom solutions.</p>
-      <button class="btn-primary" onclick="window.location='#contact'">Get in Touch</button>
+      <button class="cta-btn" onclick="location.href='#contact'">Get Started</button>
     </div>
   </section>
 
+  <!-- Projects Section -->
   <section id="projects">
     <h2 class="section-title">Our Projects</h2>
-    <div class="image-grid">
+    <div class="image-grid" aria-label="Project images">
       <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=800&q=80" alt="Sales Analytics" />
       <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="Market Research" />
       <img src="https://images.unsplash.com/photo-1614064641938-c2b6f1901b8c?auto=format&fit=crop&w=800&q=80" alt="Customer Insights" />
     </div>
   </section>
 
+  <!-- Contact Section -->
   <section id="contact">
     <h2 class="section-title">Contact Us</h2>
-    <div class="contact-info">
+    <div class="hero">
       <p>Email: <a href="mailto:harsh@sunriseinsights.in">harsh@sunriseinsights.in</a></p>
       <p>Phone: +91 9173159232</p>
     </div>
   </section>
 
+  <!-- About Section -->
   <section id="about">
     <h2 class="section-title">About Sunrise Insights</h2>
-    <div class="about-text">
+    <div class="hero">
       <p>We are a data analytics startup focused on delivering actionable insights. We partner with small businesses and startups to drive growth and efficiency through modern analytics tools and research methodologies.</p>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     &copy; 2025 Sunrise Insights. All rights reserved.
   </footer>
 
   <script>
-    // Loader hide
-    window.addEventListener('load', () => {
-      document.getElementById('loader').style.display = 'none';
+    // Loader hide after page load
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      loader.style.opacity = '0';
+      setTimeout(() => { loader.style.display = 'none'; }, 500);
     });
 
-    // Header background on scroll
+    // Animate sections on scroll using Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    document.querySelectorAll("section").forEach(section => observer.observe(section));
+
+    // Change header style on scroll
     window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
-      if(window.scrollY > 50) {
+      if(window.scrollY > 30) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
-    });
-
-    // Intersection Observer for fade-in sections
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
     });
   </script>
 </body>
