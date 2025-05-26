@@ -4,6 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sunrise Insights</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png" />
+
 <style>
   /* Reset and base */
   *, *::before, *::after {
@@ -23,7 +27,7 @@
     color: #ff6b00;
     text-decoration: none;
   }
-  a:hover {
+  a:hover, a:focus {
     text-decoration: underline;
   }
 
@@ -33,11 +37,16 @@
     top: 0; left: 0; right: 0;
     background: #111;
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 2rem;
-    padding: 1rem 0;
+    padding: 0.6rem 1rem;
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  }
+  nav img.logo {
+    height: 40px;
+    cursor: pointer;
   }
   nav a {
     font-weight: 600;
@@ -91,7 +100,7 @@
     cursor: pointer;
     transition: background 0.3s;
   }
-  button:hover {
+  button:hover, button:focus {
     background: #e05b00;
   }
 
@@ -104,11 +113,25 @@
     box-shadow: 0 0 20px #ff6b00aa;
   }
 
+  /* Contact info styles */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1.2rem;
+  }
+  .contact-info a {
+    color: #ff6b00;
+    font-weight: 600;
+    word-break: break-word;
+  }
+
   /* Responsive */
   @media (max-width: 600px) {
     nav {
       gap: 1rem;
-      padding: 0.8rem 0;
+      padding: 0.8rem 1rem;
+      justify-content: space-around;
     }
     nav a {
       font-size: 0.8rem;
@@ -122,49 +145,50 @@
     h2 {
       font-size: 1.8rem;
     }
+    nav img.logo {
+      height: 35px;
+    }
   }
 </style>
 </head>
 <body>
 
 <nav>
+  <a href="#home" aria-label="Go to Home section">
+    <img src="Sunriselogo-removebg-preview.png" alt="Sunrise Insights Logo" class="logo" />
+  </a>
   <a href="#home" class="active">Home</a>
   <a href="#services">Services</a>
   <a href="#projects">Projects</a>
-  <a href="#about">About</a>
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="home">
+<section id="home" tabindex="-1">
   <h1>Build Your Business with AI</h1>
   <p>We help businesses gain insights through AI-powered data analytics in a professional and effective manner.</p>
   <button onclick="location.href='#contact'">Get Started</button>
   <img class="section-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="AI technology illustration" />
 </section>
 
-<section id="services">
+<section id="services" tabindex="-1">
   <h2>Our Services</h2>
   <p>Data Analytics, Business Intelligence, AI Consulting, and Custom Reporting tailored to your needs.</p>
   <img class="section-img" src="https://images.unsplash.com/photo-1555949963-0aef8260eb1e?auto=format&fit=crop&w=800&q=80" alt="Services" />
 </section>
 
-<section id="projects">
+<section id="projects" tabindex="-1">
   <h2>Projects</h2>
   <p>Explore some of our successful projects demonstrating our expertise and impact.</p>
   <img class="section-img" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Projects" />
 </section>
 
-<section id="about">
-  <h2>About Us</h2>
-  <p>Sunrise Insights is dedicated to transforming data into actionable insights, empowering your business to rise.</p>
-  <img class="section-img" src="https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=800&q=80" alt="Team working" />
-</section>
-
-<section id="contact">
+<section id="contact" tabindex="-1">
   <h2>Contact Us</h2>
   <p>Reach out for inquiries, consultations, or to get started on your data-driven journey.</p>
-  <button onclick="window.location='mailto:info@sunriseinsights.com'">Email Us</button>
-  <img class="section-img" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" alt="Contact" />
+  <div class="contact-info">
+    <a href="mailto:harsh@sunriseinsights.in" aria-label="Send email to harsh@sunriseinsights.in">📧 harsh@sunriseinsights.in</a>
+    <a href="tel:+919173159232" aria-label="Call phone number 9173159232">📞 +91 91731 59232</a>
+  </div>
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -172,18 +196,14 @@
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('nav a');
 
-  // Intersection Observer to reveal sections and highlight nav links
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
-        // Add visible class for fade/slide animation
         entry.target.classList.add('visible');
 
-        // GSAP animation: fade up & slight scale
         gsap.fromTo(entry.target, {y: 40, opacity: 0, scale: 0.95}, 
           {duration: 1, y: 0, opacity: 1, scale: 1, ease: "power3.out"});
 
-        // Highlight nav link
         navLinks.forEach(link => {
           link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
         });
@@ -192,7 +212,6 @@
   }, { threshold: 0.5 });
 
   sections.forEach(section => observer.observe(section));
-
 </script>
 
 </body>
