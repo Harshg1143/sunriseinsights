@@ -1,310 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sunrise Insights</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sunrise Insights</title>
 
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="favicon.png" />
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png" />
 
-<style>
-  /* Reset & base */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  html, body {
-    margin: 0; padding: 0;
-    height: 100%;
-    background: #fff;
-    color: #222;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    scroll-behavior: smooth;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-  }
-  a {
-    color: #f05a28;
-    text-decoration: none;
-  }
-  a:hover, a:focus {
-    text-decoration: underline;
-  }
-  /* Navbar */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-    border-bottom: 1px solid #eee;
-    z-index: 1000;
-  }
-  .nav-left {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .nav-left img.logo {
-    height: 40px;
-    cursor: pointer;
-  }
-  .nav-left span {
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: #f05a28;
-    user-select: none;
-  }
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-  }
-  .nav-links ul {
-    list-style: none;
-    display: flex;
-    margin: 0; padding: 0;
-    gap: 2rem;
-  }
-  .nav-links li a {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    padding-bottom: 3px;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.3s ease;
-  }
-  .nav-links li a.active,
-  .nav-links li a:hover,
-  .nav-links li a:focus {
-    border-color: #f05a28;
-  }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Dancing+Script&display=swap" rel="stylesheet" />
 
-  /* Hamburger */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 25px;
-    height: 20px;
-    cursor: pointer;
-  }
-  .hamburger div {
-    width: 100%;
-    height: 3px;
-    background: #f05a28;
-    border-radius: 2px;
-  }
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
-  /* Sections */
-  section {
-    scroll-snap-align: start;
-    min-height: 100vh;
-    padding: 100px 2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 900px;
-    margin: 0 auto;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  h1, h2 {
-    color: #f05a28;
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-  h1 {
-    font-size: 3rem;
-  }
-  h2 {
-    font-size: 2rem;
-  }
-  p {
-    color: #333;
-    font-size: 1.1rem;
-    line-height: 1.5;
-    margin-bottom: 2rem;
-  }
-  button.cta {
-    align-self: start;
-    background-color: #f05a28;
-    border: none;
-    color: #fff;
-    padding: 1rem 2rem;
-    font-weight: 700;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  button.cta:hover,
-  button.cta:focus {
-    background-color: #d04a20;
-  }
-
-  /* Contact Info */
-  .contact-info {
-    font-size: 1.1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .contact-info a {
-    color: #f05a28;
-    font-weight: 600;
-    word-break: break-word;
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .nav-links ul {
-      gap: 1rem;
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
     }
-  }
-  @media (max-width: 600px) {
-    nav {
-      padding: 0 1rem;
-    }
-    .nav-links {
-      position: fixed;
-      top: 60px;
-      right: 0;
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Inter', sans-serif;
       background: #fff;
-      height: calc(100vh - 60px);
-      width: 200px;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      flex-direction: column;
-      padding-top: 1rem;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-      z-index: 999;
+      color: #222;
+      scroll-behavior: smooth;
     }
-    .nav-links.open {
-      transform: translateX(0);
+    a {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
     }
-    .nav-links ul {
-      flex-direction: column;
-      gap: 1.5rem;
-      padding-left: 1rem;
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
     }
-    .hamburger {
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      width: 100%;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 60px;
+      z-index: 1000;
     }
-  }
-</style>
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      font-size: 1.5rem;
+      user-select: none;
+    }
+    .nav-left img.logo {
+      height: 40px;
+      cursor: pointer;
+    }
+    .nav-left span {
+      color: #f97316; /* orange */
+    }
+    .nav-left .insights {
+      font-family: 'Dancing Script', cursive;
+      color: #000;
+      font-size: 1.7rem;
+      margin-left: 0.1rem;
+      font-weight: normal;
+    }
+
+    /* Nav links */
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .nav-links a {
+      padding: 0.5rem 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      border-bottom-color: #f97316;
+      color: #f97316;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 25px;
+      height: 20px;
+      justify-content: space-between;
+    }
+    .hamburger div {
+      height: 3px;
+      background: #222;
+      border-radius: 2px;
+    }
+
+    /* Mobile nav */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        width: 200px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        padding: 1rem;
+        gap: 1rem;
+        height: calc(100vh - 60px);
+        z-index: 999;
+      }
+      .nav-links.open {
+        transform: translateX(0);
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 20px 80px;
+      max-width: 900px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    h1, h2 {
+      font-weight: 700;
+      color: #f97316;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: #444;
+      line-height: 1.5;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background-color: #f97316;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+      text-align: center;
+      user-select: none;
+    }
+    .btn-primary:hover {
+      background-color: #c75100;
+    }
+
+    /* Contact links */
+    .contact-links a {
+      display: inline-block;
+      margin-right: 1.5rem;
+      font-weight: 600;
+      color: #f97316;
+      transition: color 0.3s;
+    }
+    .contact-links a:hover {
+      color: #c75100;
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-left">
-    <a href="#home" aria-label="Sunrise Insights Home">
-      <img src="Sunriselogo-removebg-preview.png" alt="Sunrise Insights Logo" class="logo" />
-    </a>
-    <span>Sunrise Insights</span>
-  </div>
-  <div class="nav-links" id="nav-links">
-    <ul>
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
-    <div></div>
-    <div></div>
-    <div></div>
-  </button>
-</nav>
+  <nav>
+    <div class="nav-left">
+      <a href="#home" aria-label="Sunrise Insights Home">
+        <img src="Sunriselogo-removebg-preview.png" alt="Sunrise Insights Logo" class="logo" />
+      </a>
+      <span>
+        Sunrise <span class="insights">Insights</span>
+      </span>
+    </div>
 
-<section id="home" tabindex="-1">
-  <h1>Empowering Business Growth with AI</h1>
-  <p>Sunrise Insights leverages AI-powered data analytics to provide actionable insights for your business success.</p>
-  <button class="cta" onclick="location.href='#contact'">Get Started</button>
-</section>
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
 
-<section id="services" tabindex="-1">
-  <h2>Our Services</h2>
-  <p>We offer tailored data analytics, business intelligence, AI consulting, and custom reporting to suit your business needs.</p>
-</section>
+    <div class="nav-links" id="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-<section id="projects" tabindex="-1">
-  <h2>Projects</h2>
-  <p>Explore our portfolio of impactful projects where we've transformed data into actionable business intelligence.</p>
-</section>
+  <main>
+    <section id="home" class="section">
+      <h1>Build Your Business with AI</h1>
+      <p>We help businesses gain insights through AI-powered data analytics in a professional and effective manner.</p>
+      <a href="#contact" class="btn-primary">Get Started</a>
+    </section>
 
-<section id="contact" tabindex="-1">
-  <h2>Contact Us</h2>
-  <p>Get in touch for consultations, inquiries, or to start your data-driven journey today.</p>
-  <div class="contact-info">
-    <a href="mailto:harsh@sunriseinsights.in" aria-label="Email harsh@sunriseinsights.in">📧 harsh@sunriseinsights.in</a>
-    <a href="tel:+919173159232" aria-label="Call 9173159232">📞 +91 91731 59232</a>
-  </div>
-</section>
+    <section id="services" class="section">
+      <h2>Services</h2>
+      <p>Data Analytics, Business Intelligence, AI-driven insights, Custom dashboards, and more tailored solutions.</p>
+    </section>
 
-<script>
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-links ul li a');
-  const hamburger = document.getElementById('hamburger');
-  const navLinksContainer = document.getElementById('nav-links');
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <p>Explore our successful projects that demonstrate the power of data and AI transforming businesses.</p>
+    </section>
 
-  function setActiveLink(id) {
-    navLinks.forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+    <section id="contact" class="section">
+      <h2>Contact Us</h2>
+      <p>We would love to hear from you! Reach out via email or phone.</p>
+      <div class="contact-links">
+        <a href="mailto:harsh@sunriseinsights.in" aria-label="Send email to harsh@sunriseinsights.in">harsh@sunriseinsights.in</a>
+        <a href="tel:+9173159232" aria-label="Call phone number 9173159232">+91 73159 232</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !expanded);
     });
-  }
 
-  // Intersection Observer for animations and nav active state
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        setActiveLink(entry.target.id);
-      }
+    // Close menu on link click (mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navLinks.classList.contains('open')){
+          navLinks.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', false);
+        }
+      });
     });
-  }, { threshold: 0.5 });
 
-  sections.forEach(section => observer.observe(section));
+    // GSAP scroll animations
+    window.addEventListener('load', () => {
+      gsap.registerPlugin(ScrollTrigger);
 
-  // Smooth scroll for nav links + close menu on mobile
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetID = link.getAttribute('href').substring(1);
-      document.getElementById(targetID).scrollIntoView({behavior: 'smooth'});
-      // Close mobile menu if open
-      if(navLinksContainer.classList.contains('open')) {
-        navLinksContainer.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      }
+      gsap.utils.toArray('.section').forEach(section => {
+        gsap.to(section, {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none none"
+          },
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out"
+        });
+      });
     });
-  });
-
-  // Hamburger toggle
-  hamburger.addEventListener('click', () => {
-    const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-    hamburger.setAttribute('aria-expanded', String(!expanded));
-    navLinksContainer.classList.toggle('open');
-  });
-
-  // Close menu on outside click
-  document.addEventListener('click', (e) => {
-    if (!navLinksContainer.contains(e.target) && !hamburger.contains(e.target)) {
-      if(navLinksContainer.classList.contains('open')) {
-        navLinksContainer.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      }
-    }
-  });
-</script>
+  </script>
 
 </body>
 </html>
