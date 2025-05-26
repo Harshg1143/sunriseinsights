@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sunrise Insights</title>
-
-  <!-- Favicon -->
   <link rel="icon" href="favicon.png" type="image/png" />
 
   <!-- Google Fonts -->
@@ -16,113 +14,91 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
   <style>
-    /* Reset & base */
-    * {
-      box-sizing: border-box;
-    }
-    body, html {
+    * { box-sizing: border-box; }
+    html, body {
       margin: 0; padding: 0;
       font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
       background: #fff;
       color: #222;
-      scroll-behavior: smooth;
     }
     a {
-      color: inherit;
       text-decoration: none;
-      cursor: pointer;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
+      color: inherit;
     }
 
-    /* Navbar */
     nav {
       position: fixed;
+      top: 0; left: 0;
       width: 100%;
+      height: 60px;
       background: #fff;
-      border-bottom: 1px solid #ddd;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0 2rem;
-      height: 60px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
       z-index: 1000;
     }
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      font-weight: 600;
-      font-size: 1.5rem;
-      user-select: none;
+      gap: 10px;
     }
-    .nav-left img.logo {
+    .nav-left img {
       height: 40px;
-      cursor: pointer;
     }
     .nav-left span {
-      color: #f97316; /* orange */
+      font-size: 1.5rem;
+      font-weight: bold;
     }
-    .nav-left .insights {
+    .insights {
       font-family: 'Dancing Script', cursive;
       color: #000;
-      font-size: 1.7rem;
-      margin-left: 0.1rem;
-      font-weight: normal;
+      font-size: 1.5rem;
+      margin-left: 5px;
     }
 
-    /* Nav links */
     .nav-links {
       display: flex;
-      gap: 2rem;
-      font-weight: 600;
-      font-size: 1rem;
+      gap: 1.5rem;
     }
     .nav-links a {
-      padding: 0.5rem 0;
+      font-weight: 600;
+      padding: 5px 0;
       border-bottom: 2px solid transparent;
-      transition: border-color 0.3s;
+      transition: all 0.3s;
     }
-    .nav-links a:hover,
-    .nav-links a.active {
-      border-bottom-color: #f97316;
+    .nav-links a.active, .nav-links a:hover {
+      border-color: #f97316;
       color: #f97316;
     }
 
-    /* Hamburger */
     .hamburger {
       display: none;
       flex-direction: column;
+      gap: 4px;
       cursor: pointer;
-      width: 25px;
-      height: 20px;
-      justify-content: space-between;
     }
     .hamburger div {
+      width: 25px;
       height: 3px;
       background: #222;
-      border-radius: 2px;
     }
 
-    /* Mobile nav */
     @media (max-width: 768px) {
       .nav-links {
-        position: fixed;
+        position: absolute;
         top: 60px;
         right: 0;
         background: #fff;
         flex-direction: column;
         width: 200px;
         transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
         padding: 1rem;
-        gap: 1rem;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
         height: calc(100vh - 60px);
-        z-index: 999;
       }
       .nav-links.open {
         transform: translateX(0);
@@ -132,63 +108,83 @@
       }
     }
 
-    /* Sections */
+    main {
+      margin-top: 60px;
+    }
     section {
-      padding: 100px 20px 80px;
-      max-width: 900px;
-      margin: 0 auto;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      opacity: 0;
-      transform: translateY(40px);
+      padding: 100px 20px;
+      max-width: 1000px;
+      margin: auto;
     }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-    h1, h2 {
-      font-weight: 700;
+    section h2 {
+      font-size: 2rem;
       color: #f97316;
       margin-bottom: 1rem;
     }
-    p {
-      color: #444;
-      line-height: 1.5;
+    section p {
       font-size: 1.1rem;
-      margin-bottom: 1.5rem;
+      color: #444;
+      margin-bottom: 2rem;
     }
 
-    /* Buttons */
-    .btn-primary {
-      background-color: #f97316;
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-      display: inline-block;
+    /* Home */
+    #home {
       text-align: center;
-      user-select: none;
     }
-    .btn-primary:hover {
-      background-color: #c75100;
+    #home img {
+      max-width: 400px;
+      margin: 0 auto 2rem;
     }
 
-    /* Contact links */
-    .contact-links a {
-      display: inline-block;
-      margin-right: 1.5rem;
-      font-weight: 600;
-      color: #f97316;
-      transition: color 0.3s;
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
     }
-    .contact-links a:hover {
-      color: #c75100;
+    .card {
+      padding: 1.5rem;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .card img {
+      height: 80px;
+      margin-bottom: 1rem;
+    }
+
+    /* Contact */
+    .contact-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .contact-box {
+      flex: 1;
+      padding: 1rem;
+      border: 2px solid #f97316;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #f97316;
+      text-align: center;
+      transition: background 0.3s, color 0.3s;
+    }
+    .contact-box:hover {
+      background: #f97316;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #f7f7f7;
+      color: #777;
     }
   </style>
 </head>
@@ -196,20 +192,12 @@
 
   <nav>
     <div class="nav-left">
-      <a href="#home" aria-label="Sunrise Insights Home">
-        <img src="Sunriselogo-removebg-preview.png" alt="Sunrise Insights Logo" class="logo" />
-      </a>
-      <span>
-        Sunrise <span class="insights">Insights</span>
-      </span>
+      <img src="Sunriselogo-removebg-preview.png" alt="Logo">
+      <span>Sunrise <span class="insights">Insights</span></span>
     </div>
-
-    <div class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" role="button" tabindex="0">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="hamburger" id="hamburger">
+      <div></div><div></div><div></div>
     </div>
-
     <div class="nav-links" id="nav-links">
       <a href="#home" class="active">Home</a>
       <a href="#services">Services</a>
@@ -219,72 +207,99 @@
   </nav>
 
   <main>
-    <section id="home" class="section">
-      <h1>Build Your Business with AI</h1>
-      <p>We help businesses gain insights through AI-powered data analytics in a professional and effective manner.</p>
-      <a href="#contact" class="btn-primary">Get Started</a>
+    <section id="home">
+      <img src="https://source.unsplash.com/featured/?business,data" alt="Welcome">
+      <h2>Welcome to Sunrise Insights</h2>
+      <p>Transforming businesses through data-driven decisions. We help brands uncover opportunities using AI and deep analytics.</p>
     </section>
 
-    <section id="services" class="section">
-      <h2>Services</h2>
-      <p>Data Analytics, Business Intelligence, AI-driven insights, Custom dashboards, and more tailored solutions.</p>
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="cards">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/4701/4701482.png" alt="Data Insights">
+          <h3>Data Insights</h3>
+          <p>Unlock patterns in your business with our expert analysis.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/4509/4509460.png" alt="BI Dashboards">
+          <h3>BI Dashboards</h3>
+          <p>Custom business intelligence dashboards that tell stories.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/2950/2950659.png" alt="AI Solutions">
+          <h3>AI Solutions</h3>
+          <p>Implement AI to automate and optimize your business.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <p>Explore our successful projects that demonstrate the power of data and AI transforming businesses.</p>
+    <section id="projects">
+      <h2>Our Projects</h2>
+      <div class="cards">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/3043/3043211.png" alt="Project">
+          <h3>Data Insights for Bytenic Solutions</h3>
+          <p>We helped Bytenic, an IT firm, grow through actionable insights from customer data.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact">
       <h2>Contact Us</h2>
-      <p>We would love to hear from you! Reach out via email or phone.</p>
-      <div class="contact-links">
-        <a href="mailto:harsh@sunriseinsights.in" aria-label="Send email to harsh@sunriseinsights.in">harsh@sunriseinsights.in</a>
-        <a href="tel:+9173159232" aria-label="Call phone number 9173159232">+91 73159 232</a>
+      <p>We’d love to connect with you. Reach out to us below:</p>
+      <div class="contact-boxes">
+        <a class="contact-box" href="mailto:harsh@sunriseinsights.in">📧 harsh@sunriseinsights.in</a>
+        <a class="contact-box" href="tel:+9173159232">📞 +91 9173159232</a>
       </div>
     </section>
   </main>
 
+  <footer>
+    &copy; 2025 Sunrise Insights. All rights reserved.
+  </footer>
+
   <script>
-    // Hamburger toggle
+    // Mobile menu
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
+    hamburger.onclick = () => navLinks.classList.toggle('open');
 
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', !expanded);
-    });
-
-    // Close menu on link click (mobile)
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(navLinks.classList.contains('open')){
-          navLinks.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', false);
+    // Highlight nav on scroll
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const top = window.scrollY + 60;
+        if (top >= section.offsetTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navItems.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === `#${current}`) {
+          a.classList.add('active');
         }
       });
     });
 
-    // GSAP scroll animations
+    // GSAP animations
     window.addEventListener('load', () => {
       gsap.registerPlugin(ScrollTrigger);
-
-      gsap.utils.toArray('.section').forEach(section => {
-        gsap.to(section, {
+      gsap.utils.toArray('section').forEach(section => {
+        gsap.from(section, {
           scrollTrigger: {
             trigger: section,
             start: "top 80%",
-            toggleActions: "play none none none"
           },
-          opacity: 1,
-          y: 0,
+          y: 40,
+          opacity: 0,
           duration: 1,
-          ease: "power3.out"
+          ease: 'power3.out'
         });
       });
     });
   </script>
-
 </body>
 </html>
