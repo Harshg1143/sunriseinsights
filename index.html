@@ -19,8 +19,8 @@
       margin: 0; padding: 0;
       font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
-      background: #fff;
-      color: #222;
+      background: #111;
+      color: #eee;
     }
     a {
       text-decoration: none;
@@ -32,13 +32,13 @@
       top: 0; left: 0;
       width: 100%;
       height: 60px;
-      background: #fff;
+      background: #111;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0 2rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
       z-index: 1000;
+      border-bottom: 1px solid #222;
     }
     .nav-left {
       display: flex;
@@ -51,18 +51,16 @@
     .nav-left span {
       font-size: 1.5rem;
       font-weight: bold;
+      color: #fff;
     }
     .insights {
       font-family: 'Dancing Script', cursive;
       color: #f97316;
-      font-size: 1.5rem;
-      margin-left: 5px;
     }
 
     .nav-links {
       display: flex;
       gap: 1.5rem;
-      transition: transform 0.3s ease;
     }
     .nav-links a {
       font-weight: 600;
@@ -77,48 +75,35 @@
 
     .hamburger {
       display: none;
-      width: 30px;
-      height: 25px;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 4px;
       cursor: pointer;
     }
-    .bar {
-      height: 4px;
-      background: #222;
-      border-radius: 2px;
-      transition: 0.3s;
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: #fff;
     }
 
     @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
-      }
       .nav-links {
         position: absolute;
         top: 60px;
         right: 0;
-        background: #fff;
+        background: #111;
         flex-direction: column;
-        align-items: flex-start;
         width: 200px;
-        height: auto;
-        padding: 1rem;
         transform: translateX(100%);
-        box-shadow: -2px 2px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        padding: 1rem;
+        height: calc(100vh - 60px);
+        z-index: 999;
       }
       .nav-links.open {
         transform: translateX(0);
       }
-
-      .hamburger.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 6px);
-      }
-      .hamburger.active .bar:nth-child(2) {
-        opacity: 0;
-      }
-      .hamburger.active .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -6px);
+      .hamburger {
+        display: flex;
       }
     }
 
@@ -137,11 +122,10 @@
     }
     section p {
       font-size: 1.1rem;
-      color: #444;
+      color: #ccc;
       margin-bottom: 2rem;
     }
 
-    /* Cards */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -149,29 +133,27 @@
     }
     .card {
       padding: 1.5rem;
-      border: 1px solid #eee;
+      border: 1px solid #333;
       border-radius: 8px;
       text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      background: #1c1c1c;
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
     .card img {
       height: 80px;
       margin-bottom: 1rem;
     }
 
-    /* Contact */
     .contact-boxes {
       display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
+      flex-direction: column;
+      gap: 1rem;
     }
     .contact-box {
-      flex: 1;
       padding: 1rem;
       border: 2px solid #f97316;
       border-radius: 8px;
@@ -182,28 +164,25 @@
     }
     .contact-box:hover {
       background: #f97316;
-      color: #fff;
+      color: #111;
     }
 
     footer {
       text-align: center;
       padding: 1rem;
-      background: #f7f7f7;
-      color: #777;
+      background: #1a1a1a;
+      color: #888;
     }
   </style>
 </head>
 <body>
-
   <nav>
     <div class="nav-left">
       <img src="Sunriselogo-removebg-preview.png" alt="Logo">
       <span>Sunrise <span class="insights">Insights</span></span>
     </div>
     <div class="hamburger" id="hamburger">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
+      <div></div><div></div><div></div>
     </div>
     <div class="nav-links" id="nav-links">
       <a href="#home" class="nav-link active">Home</a>
@@ -216,50 +195,56 @@
   <main>
     <section id="home">
       <h2>Welcome to Sunrise Insights</h2>
-      <p>We deliver smart data analytics to grow your business using modern tools and insights.</p>
+      <p>Transforming businesses through data-driven decisions. We help brands uncover opportunities using AI and deep analytics.</p>
     </section>
 
     <section id="services">
       <h2>Our Services</h2>
       <div class="cards">
         <div class="card">
-          <img src="service1.png" alt="">
-          <h3>Dashboarding</h3>
-          <p>Interactive dashboards for powerful data visualization.</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/4701/4701482.png" alt="Data Insights">
+          <h3>Data Insights</h3>
+          <p>Unlock patterns in your business with our expert analysis.</p>
         </div>
         <div class="card">
-          <img src="service2.png" alt="">
-          <h3>Data Cleaning</h3>
-          <p>We make your data ready for analysis.</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/4509/4509460.png" alt="BI Dashboards">
+          <h3>BI Dashboards</h3>
+          <p>Custom business intelligence dashboards that tell stories.</p>
         </div>
         <div class="card">
-          <img src="service3.png" alt="">
-          <h3>Reports & KPIs</h3>
-          <p>Get actionable reports with clear metrics.</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/2950/2950659.png" alt="AI Solutions">
+          <h3>AI Solutions</h3>
+          <p>Implement AI to automate and optimize your business.</p>
         </div>
       </div>
     </section>
 
     <section id="projects">
       <h2>Our Projects</h2>
-      <p>We've worked with several businesses to unlock the potential of their data and transform their decision-making processes.</p>
+      <div class="cards">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/3043/3043211.png" alt="Project">
+          <h3>Data Insights for Bytenic Solutions</h3>
+          <p>We helped Bytenic, an IT firm, grow through actionable insights from customer data.</p>
+        </div>
+      </div>
     </section>
 
     <section id="contact">
       <h2>Contact Us</h2>
+      <p>We’d love to connect with you. Reach out to us below:</p>
       <div class="contact-boxes">
-        <div class="contact-box">📧 sunriseinsights@email.com</div>
-        <div class="contact-box">📞 +91 98765 43210</div>
-        <div class="contact-box">📍 Ahmedabad, India</div>
+        <div class="contact-box">📧 harsh@sunriseinsights.in</div>
+        <div class="contact-box">📞 +91 9173159232</div>
       </div>
     </section>
   </main>
 
-  <footer>© 2025 Sunrise Insights. All rights reserved.</footer>
+  <footer>
+    &copy; 2025 Sunrise Insights. All rights reserved.
+  </footer>
 
-  <!-- JavaScript -->
   <script>
-    // Hamburger toggle
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
     const navItems = document.querySelectorAll('.nav-link');
@@ -276,27 +261,39 @@
       });
     });
 
-    // Active link on scroll
     const sections = document.querySelectorAll('section');
-    const navLinksArray = document.querySelectorAll('.nav-link');
-
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - 80;
-        if (scrollY >= sectionTop) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - 80 && pageYOffset < sectionTop + sectionHeight - 80) {
           current = section.getAttribute('id');
         }
       });
-
-      navLinksArray.forEach(link => {
+      navItems.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href').includes(current)) {
           link.classList.add('active');
         }
       });
     });
-  </script>
 
+    window.addEventListener('load', () => {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('section').forEach(section => {
+        gsap.from(section, {
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+          },
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
