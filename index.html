@@ -6,10 +6,8 @@
   <title>Sunrise Insights</title>
   <link rel="icon" href="favicon.png" type="image/png" />
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Dancing+Script&display=swap" rel="stylesheet" />
 
-  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
@@ -54,8 +52,9 @@
       color: #fff;
     }
     .insights {
+      /* EDITED: Changed to your primary orange #f97316 */
       font-family: 'Dancing Script', cursive;
-      color: #FFA500;
+      color: #f97316; /* Consistent orange */
     }
 
     .nav-links {
@@ -215,6 +214,7 @@
           <img src="https://cdn-icons-png.flaticon.com/512/2950/2950659.png" alt="AI Solutions">
           <h3>AI Solutions</h3>
           <p>Implement AI to automate and optimize your business.</p>
+        </p>
         </div>
       </div>
     </section>
@@ -264,36 +264,58 @@
     const sections = document.querySelectorAll('main section');
     window.addEventListener('scroll', () => {
       let current = '';
-      const scrollY = window.scrollY + 100;
+      // Adjust scrollY by a bit more to ensure the last section is caught
+      const scrollY = window.scrollY + 150; // Increased offset
+
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
+
+        // Check if scrollY is within the section
         if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
           current = section.getAttribute('id');
         }
       });
+
+      // Special handling for the last section (Contact)
+      // If we are near the very bottom of the page, assume "contact" is active
+      const lastSection = document.getElementById('contact');
+      if (lastSection) {
+        const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50; // 50px buffer
+        if (atBottom || scrollY >= lastSection.offsetTop + lastSection.clientHeight / 2) { // or if halfway into the last section
+          current = lastSection.getAttribute('id');
+        }
+      }
+
+
       navItems.forEach(link => {
         link.classList.remove('active');
+        // Check if the link's href contains the current section ID
         if (link.getAttribute('href').includes(current)) {
           link.classList.add('active');
         }
       });
     });
 
+    // Initial check on load to set the active link for the current view
     window.addEventListener('load', () => {
-      gsap.registerPlugin(ScrollTrigger);
-      gsap.utils.toArray('section').forEach(section => {
-        gsap.from(section, {
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-          },
-          y: 40,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out'
+        // Trigger scroll event manually on load to set initial active link
+        window.dispatchEvent(new Event('scroll'));
+
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%", // When the top of the section hits 80% of the viewport
+                    toggleActions: "play none none none" // Play animation once
+                },
+                y: 40,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out'
+            });
         });
-      });
     });
   </script>
 </body>
