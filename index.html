@@ -185,7 +185,7 @@
       <div></div><div></div><div></div>
     </div>
     <div class="nav-links" id="nav-links">
-      <a href="#home" class="nav-link active">Home</a>
+      <a href="#home" class="nav-link">Home</a>
       <a href="#services" class="nav-link">Services</a>
       <a href="#projects" class="nav-link">Projects</a>
       <a href="#contact" class="nav-link">Contact</a>
@@ -261,13 +261,14 @@
       });
     });
 
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll('main section');
     window.addEventListener('scroll', () => {
       let current = '';
+      const scrollY = window.scrollY + 100;
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 80 && pageYOffset < sectionTop + sectionHeight - 80) {
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
           current = section.getAttribute('id');
         }
       });
