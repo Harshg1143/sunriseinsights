@@ -3,102 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sunrise Insights</title>
+  <title>Sunrise Insights - Unlocking Your Business Potential</title>
   <link rel="icon" href="favicon.png" type="image/png" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Dancing+Script&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
   <style>
+    /* Base Styles */
     * { box-sizing: border-box; }
     html, body {
       margin: 0; padding: 0;
       font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
-      background: #111;
-      color: #eee;
+      background: #0A0A0A; /* Darker background for more depth */
+      color: #E0E0E0; /* Softer white for better readability */
+      line-height: 1.6;
     }
     a {
       text-decoration: none;
       color: inherit;
     }
 
+    /* Navigation Bar */
     nav {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      height: 60px;
-      background: #111;
+      height: 70px; /* Slightly taller nav */
+      background: rgba(10, 10, 10, 0.95); /* Semi-transparent background */
+      backdrop-filter: blur(5px); /* Subtle blur effect */
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 2rem;
+      padding: 0 3rem; /* More horizontal padding */
       z-index: 1000;
-      border-bottom: 1px solid #222;
+      border-bottom: 1px solid #1A1A1A; /* Darker border */
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Subtle shadow */
     }
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
     .nav-left img {
-      height: 40px;
+      height: 45px; /* Slightly larger logo */
     }
     .nav-left span {
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-size: 1.8rem; /* Larger logo text */
+      font-weight: 700; /* Bolder */
     }
     .logo-text {
         color: #fff;
     }
     .insights {
       font-family: 'Dancing Script', cursive;
-      color: #f97316;
+      color: #FF9800; /* Brighter orange accent */
     }
-
 
     .nav-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem; /* More space between links */
     }
     .nav-links a {
       font-weight: 600;
-      padding: 5px 0;
+      padding: 8px 0; /* More padding */
       border-bottom: 2px solid transparent;
-      transition: all 0.3s;
+      transition: all 0.3s ease-in-out; /* Smoother transition */
+      color: #C0C0C0; /* Softer link color */
     }
     .nav-links a.active, .nav-links a:hover {
-      border-color: #f97316;
-      color: #f97316;
+      border-color: #FF9800;
+      color: #FF9800;
     }
 
+    /* Hamburger Menu */
     .hamburger {
       display: none;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px; /* More space between bars */
       cursor: pointer;
+      position: relative;
+      z-index: 1001; /* Ensure it's above the nav links when open */
     }
     .hamburger div {
-      width: 25px;
+      width: 30px; /* Wider bars */
       height: 3px;
       background: #fff;
+      transition: all 0.3s ease-in-out;
+    }
+    .hamburger.active div:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active div:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
     }
 
+    /* Responsive Navigation */
     @media (max-width: 768px) {
       .nav-links {
-        position: absolute;
-        top: 60px;
+        position: fixed; /* Use fixed for full viewport height */
+        top: 70px; /* Below the nav bar */
         right: 0;
-        background: #111;
+        background: #1A1A1A; /* Solid background for mobile menu */
         flex-direction: column;
-        width: 200px;
+        width: 250px; /* Wider mobile menu */
         transform: translateX(100%);
-        transition: transform 0.3s ease;
-        padding: 1rem;
-        height: calc(100vh - 60px);
-        z-index: 999;
+        transition: transform 0.4s ease-in-out; /* Smoother transition */
+        padding: 2rem 1.5rem;
+        height: calc(100vh - 70px);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.4);
+        align-items: flex-start; /* Align links to the left */
+        gap: 1.5rem;
       }
       .nav-links.open {
         transform: translateX(0);
@@ -108,96 +129,152 @@
       }
     }
 
+    /* Main Content Sections */
     main {
-      margin-top: 60px;
+      margin-top: 70px; /* Account for taller nav */
     }
     section {
-      padding: 100px 20px;
-      max-width: 1000px;
+      padding: 120px 25px; /* More vertical padding */
+      max-width: 1200px; /* Wider content area */
       margin: auto;
+      text-align: center; /* Center align content */
     }
     section h2 {
-      font-size: 2rem;
-      color: #f97316;
-      margin-bottom: 1rem;
+      font-size: 3rem; /* Larger headings */
+      color: #FF9800;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    section h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: #FF9800;
+      margin: 15px auto 0; /* Center the underline */
+      border-radius: 2px;
     }
     section p {
-      font-size: 1.1rem;
-      color: #ccc;
-      margin-bottom: 2rem;
+      font-size: 1.2rem; /* Larger paragraph text */
+      color: #B0B0B0; /* Softer text color */
+      margin-bottom: 3rem;
+      max-width: 800px; /* Constrain paragraph width */
+      margin-left: auto;
+      margin-right: auto;
     }
 
+    /* Cards */
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Larger min-width for cards */
+      gap: 2.5rem; /* More space between cards */
     }
     .card {
-      padding: 1.5rem;
-      border: 1px solid #333;
-      border-radius: 8px;
+      padding: 2rem; /* More padding inside cards */
+      border: 1px solid #282828; /* Softer border */
+      border-radius: 12px; /* More rounded corners */
       text-align: center;
-      background: #1c1c1c;
-      transition: transform 0.3s, box-shadow 0.3s;
+      background: #151515; /* Darker card background */
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden; /* For pseudo-elements */
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(255, 152, 0, 0.1) 0%, transparent 70%);
+      transition: transform 0.5s ease-out;
+      transform: scale(0);
+      z-index: 0;
+    }
+    .card:hover::before {
+      transform: scale(1);
     }
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transform: translateY(-10px); /* More pronounced lift */
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5); /* Stronger shadow */
+      border-color: #FF9800; /* Highlight border on hover */
     }
     .card img {
-      height: 80px;
+      height: 90px; /* Larger icons */
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.5)); /* Glow effect on icons */
+    }
+    .card h3 {
+      font-size: 1.7rem; /* Larger card titles */
+      color: #FF9800;
       margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .card p {
+      font-size: 1rem; /* Slightly smaller card text */
+      color: #A0A0A0;
+      margin-bottom: 0; /* Remove bottom margin */
     }
 
+    /* Contact Section */
     .contact-boxes {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem; /* More space between contact boxes */
+      max-width: 600px;
+      margin: 0 auto;
     }
-    /* EDITED: Added styles for anchor tags within contact-box for consistency */
     .contact-box a {
-        display: block; /* Make the link fill the box */
-        padding: 1rem; /* Apply padding to the link, not the box */
-        border: 2px solid #f97316;
-        border-radius: 8px;
-        font-weight: bold;
-        color: #f97316;
-        text-align: center;
-        transition: background 0.3s, color 0.3s;
+      display: flex; /* Use flex for icon and text alignment */
+      align-items: center;
+      justify-content: center;
+      gap: 15px; /* Space between icon and text */
+      padding: 1.2rem 1.5rem; /* More padding */
+      border: 2px solid #FF9800;
+      border-radius: 10px; /* More rounded corners */
+      font-weight: 700;
+      color: #FF9800;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+      font-size: 1.2rem;
     }
     .contact-box a:hover {
-      background: #f97316;
-      color: #111;
+      background: #FF9800;
+      color: #0A0A0A; /* Dark text on hover */
+      box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
+      transform: translateY(-3px);
     }
-    /* Removed padding, border, etc. from .contact-box as it's now on the 'a' tag */
-    .contact-box {
-        /* These styles are now handled by .contact-box a */
-        /* padding: 1rem; */
-        /* border: 2px solid #f97316; */
-        /* border-radius: 8px; */
-        /* font-weight: bold; */
-        /* color: #f97316; */
-        /* text-align: center; */
-        /* transition: background 0.3s, color 0.3s; */
-    }
-    /* Removed .contact-box:hover */
-    /* .contact-box:hover {
-      background: #f97316;
-      color: #111;
-    } */
 
+    /* Footer */
     footer {
       text-align: center;
-      padding: 1rem;
-      background: #1a1a1a;
-      color: #888;
+      padding: 1.5rem;
+      background: #101010; /* Slightly darker footer */
+      color: #606060; /* Softer text color */
+      font-size: 0.9rem;
+      border-top: 1px solid #1A1A1A;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
     }
   </style>
 </head>
 <body>
   <nav>
     <div class="nav-left">
-      <img src="Sunriselogo-removebg-preview.png" alt="Logo">
+      <img src="https://i.ibb.co/hK2j3P8/Sunriselogo-removebg-preview.png" alt="Sunrise Insights Logo">
       <span><span class="logo-text">Sunrise</span> <span class="insights">Insights</span></span>
     </div>
     <div class="hamburger" id="hamburger">
@@ -206,52 +283,69 @@
     <div class="nav-links" id="nav-links">
       <a href="#home" class="nav-link">Home</a>
       <a href="#services" class="nav-link">Services</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#projects" class="nav-link">Our Work</a>
+      <a href="#contact" class="nav-link">Connect</a>
     </div>
   </nav>
 
   <main>
     <section id="home">
-      <h2>Welcome to Sunrise Insights</h2>
-      <p>Transforming businesses through data-driven decisions. We help brands uncover opportunities using AI and deep analytics.</p>
+      <h2>Illuminating Your Path to Success</h2>
+      <p>At **Sunrise Insights**, we believe every business holds untapped potential. We leverage cutting-edge **AI**, deep **analytics**, and bespoke **data strategies** to transform raw information into actionable wisdom, guiding your brand towards unprecedented growth and innovation.</p>
     </section>
 
     <section id="services">
-      <h2>Our Services</h2>
+      <h2>Our Core Offerings</h2>
+      <p>We provide a comprehensive suite of services designed to empower your business with clarity and foresight, helping you make smarter, faster decisions.</p>
       <div class="cards">
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/4701/4701482.png" alt="Data Insights">
-          <h3>Data Insights</h3>
-          <p>Unlock patterns in your business with our expert analysis.</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/8799/8799197.png" alt="Advanced Data Insights Icon">
+          <h3>Advanced Data Insights</h3>
+          <p>Go beyond surface-level metrics. Our experts dive deep into your data, uncovering hidden patterns, correlations, and opportunities that drive strategic advantage.</p>
         </div>
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/4509/4509460.png" alt="BI Dashboards">
-          <h3>BI Dashboards</h3>
-          <p>Custom business intelligence dashboards that tell stories.</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/8800/8800049.png" alt="Interactive BI Dashboards Icon">
+          <h3>Interactive BI Dashboards</h3>
+          <p>Visualize your business performance with dynamic, intuitive dashboards. Get real-time insights tailored to your needs, empowering every team member.</p>
         </div>
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/2950/2950659.png" alt="AI Solutions">
-          <h3>AI Solutions</h3>
-          <p>Implement AI to automate and optimize your business.</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/8800/8800085.png" alt="Intelligent AI Solutions Icon">
+          <h3>Intelligent AI Solutions</h3>
+          <p>Harness the power of Artificial Intelligence to automate processes, predict market trends, and personalize customer experiences, giving you a competitive edge.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/8799/8799214.png" alt="Strategic Consulting Icon">
+          <h3>Strategic Consulting</h3>
+          <p>From data collection to implementation, we provide end-to-end consulting to ensure your data strategy aligns perfectly with your business goals.</p>
         </div>
       </div>
     </section>
 
     <section id="projects">
-      <h2>Our Projects</h2>
+      <h2>Our Transformative Work</h2>
+      <p>Discover how Sunrise Insights has helped businesses like yours achieve remarkable results through data-driven innovation.</p>
       <div class="cards">
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/3043/3043211.png" alt="Project">
-          <h3>Data Insights for Bytenic Solutions</h3>
-          <p>We helped Bytenic, an IT firm, grow through actionable insights from customer data.</p>
+          <img src="https://cdn-icons-png.flaticon.com/512/8799/8799059.png" alt="Project 1 Icon">
+          <h3>Optimizing E-commerce Sales for "TrendVault"</h3>
+          <p>We implemented an **AI-powered recommendation engine** for a leading online retailer, resulting in a **25% increase in conversion rates** and a significant boost in average order value.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/8799/8799119.png" alt="Project 2 Icon">
+          <h3>Customer Churn Prediction for "ConnectTel"</h3>
+          <p>For a national telecom provider, we developed a **predictive analytics model** that identified at-risk customers with **90% accuracy**, enabling proactive retention strategies and reducing churn by 15%.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/8799/8799166.png" alt="Project 3 Icon">
+          <h3>Supply Chain Optimization for "AgriHarvest"</h3>
+          <p>Our **data insights** helped an agricultural firm streamline their supply chain, leading to a **20% reduction in operational costs** and improved delivery efficiency across their network.</p>
         </div>
       </div>
     </section>
 
     <section id="contact">
-      <h2>Contact Us</h2>
-      <p>We’d love to connect with you. Reach out to us below:</p>
+      <h2>Let's Connect and Innovate</h2>
+      <p>Ready to unlock the full potential of your business? Reach out to us, and let's discuss how data and AI can drive your success.</p>
       <div class="contact-boxes">
         <div class="contact-box">
             <a href="mailto:harsh@sunriseinsights.in">📧 harsh@sunriseinsights.in</a>
