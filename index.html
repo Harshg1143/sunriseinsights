@@ -71,6 +71,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            margin-right: auto;
         }
         .nav-left img {
             height: 45px; /* Slightly larger logo */
@@ -109,6 +110,7 @@
             flex-direction: column;
             gap: 6px; /* More space between bars */
             cursor: pointer;
+            margin-left: auto;
             position: relative;
             z-index: 1001; /* Ensure it's above the nav links when open */
         }
@@ -152,7 +154,12 @@
                 display: flex;
             }
         }
-
+        @media (max-width: 480px) {
+    section h2 {
+        font-size: 2rem;
+        word-break: break-word;
+    }
+}
         /* Main Content Sections */
         main {
             margin-top: 70px; /* Account for taller nav */
@@ -293,6 +300,8 @@
             from { opacity: 0; transform: translateX(50px); }
             to { opacity: 1; transform: translateX(0); }
         }
+    }
+}
     </style>
 </head>
 <body>
