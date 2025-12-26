@@ -3,467 +3,270 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Sunrise Insights | AI, Data Analytics & Business Consulting for Growth</title>
-    <meta name="description" content="Sunrise Insights transforms your raw data into actionable wisdom with cutting-edge AI, deep analytics, and strategic consulting. Unlock untapped business potential and drive unprecedented growth." />
-    <meta name="keywords" content="Sunrise Insights, AI consulting, data analytics, business intelligence, strategic consulting, market research, business growth, data strategy, artificial intelligence, Rajkot, Gujarat, India" />
-    <link rel="canonical" href="https://www.sunriseinsights.in/" />
+    <title>Sunrise Insights | Modern AI & Data Consulting</title>
     
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.sunriseinsights.in/" />
-    <meta property="og:title" content="Sunrise Insights | AI, Data Analytics & Business Consulting for Growth" />
-    <meta property="og:description" content="Sunrise Insights transforms your raw data into actionable wisdom with cutting-edge AI, deep analytics, and strategic consulting. Unlock untapped business potential and drive unprecedented growth." />
-    <meta property="og:image" content="https://www.sunriseinsights.in/Sunriselogo-removebg-preview.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
     
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://www.sunriseinsights.in/" />
-    <meta name="twitter:title" content="Sunrise Insights | AI, Data Analytics & Business Consulting for Growth" />
-    <meta name="twitter:description" content="Sunrise Insights transforms your raw data into actionable wisdom with cutting-edge AI, deep analytics, and strategic consulting. Unlock untapped business potential and drive unprecedented growth." />
-    <meta name="twitter:image" content="https://www.sunriseinsights.in/Sunriselogo-removebg-preview.png" />
-    
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff9800">
-<meta name="msapplication-TileColor" content="#ff9800">
-<meta name="theme-color" content="#ffffff">
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
-        /* Base Styles */
-        * { box-sizing: border-box; }
-        html, body {
-            margin: 0; padding: 0;
-            font-family: 'Inter', poppins;
-            scroll-behavior: smooth;
-            background: #ffffff; /* Darker background for more depth */
-            color: #E0E0E0; /* Softer white for better readability */
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
+        :root {
+            --primary: #3920B0;
+            --accent: #FFAC1C;
+            --bg-dark: #07070a; /* Deeper midnight black */
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
 
-        /* Navigation Bar */
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            /* MODERN MESH BACKGROUND */
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(57, 32, 176, 0.2) 0px, transparent 40%),
+                radial-gradient(at 100% 0%, rgba(255, 172, 28, 0.1) 0px, transparent 40%),
+                radial-gradient(at 50% 100%, rgba(57, 32, 176, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* Navigation */
         nav {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 70px; /* Slightly taller nav */
-            background: white; /* Semi-transparent background */
-            backdrop-filter: blur(5px); /* Subtle blur effect */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 3rem; /* More horizontal padding */
-            z-index: 1000;
-            border-bottom: 1px solid #ffffff; /* Darker border */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Subtle shadow */
+            top: 0; width: 100%; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 8%; z-index: 1000;
+            background: rgba(7, 7, 10, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-right: auto;
-        }
-        .nav-left img {
-            height: 45px; /* Slightly larger logo */
-        }
-        .nav-left span {
-            font-size: 1.8rem; /* Larger logo text */
-            font-weight: 700; /* Bolder */
-        }
-        .logo-text {
-            color: #FFAC1C;
-             font-family: 'Dancing Script', cursive;
-        }
-        .sunrise {
-            font-family: 'Dancing Script', cursive;
-            color: #3920B0; /* Brighter orange accent */
-               }
-        
-        .insights {
-            font-family: 'Dancing Script', cursive;
-            color: #3920B0; /* Brighter orange accent */
+            gap: 15px;
+            text-decoration: none;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem; /* More space between links */
-        }
-        .nav-links a {
-            font-weight: 600;
-            padding: 8px 0; /* More padding */
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease-in-out; /* Smoother transition */
-            color: #C0C0C0; /* Softer link color */
-        }
-        .nav-links a.active, .nav-links a:hover {
-            border-color: #3920B0;
-            color: #3920B0;
+        .logo-img {
+            height: 45px;
+            width: auto;
+            /* If your logo is too dark, this filter makes it pop */
+            filter: brightness(1.1); 
         }
 
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px; /* More space between bars */
-            cursor: pointer;
-            margin-left: auto;
-            position: relative;
-            z-index: 1001; /* Ensure it's above the nav links when open */
-        }
-        .hamburger div {
-            width: 30px; /* Wider bars */
-            height: 3px;
-            background: #fff;
-            transition: all 0.3s ease-in-out;
-        }
-        .hamburger.active div:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active div:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
+        .logo-text { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #ffffff; }
+        .insights-logo { color: var(--accent); }
 
-        /* Responsive Navigation */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed; /* Use fixed for full viewport height */
-                top: 70px; /* Below the nav bar */
-                right: 0;
-                background: #ffffff; /* Solid background for mobile menu */
-                flex-direction: column;
-                width: 250px; /* Wider mobile menu */
-                transform: translateX(100%);
-                transition: transform 0.4s ease-in-out; /* Smoother transition */
-                padding: 2rem 1.5rem;
-                height: calc(100vh - 70px);
-                box-shadow: -5px 0 15px rgba(0,0,0,0.4);
-                align-items: flex-start; /* Align links to the left */
-                gap: 1.5rem;
-            }
-            .nav-links.open {
-                transform: translateX(0);
-            }
-            .hamburger {
-                display: flex;
-            }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { 
+            color: var(--text-dim); font-weight: 600; transition: 0.3s; 
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px;
+            text-decoration: none; position: relative; padding: 5px 0;
         }
-        @media (max-width: 480px) {
-    section h2 {
-        font-size: 2rem;
-        word-break: break-word;
-    }
-}
-        /* Main Content Sections */
-        main {
-            margin-top: 70px; /* Account for taller nav */
-        }
-        section {
-            padding: 120px 25px; /* More vertical padding */
-            max-width: 1200px; /* Wider content area */
-            margin: auto;
-            text-align: center; /* Center align content */
-        }
-        section h2 {
-            font-size: 3rem; /* Larger headings */
-            color: #3920B0;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        section h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background: #3920B0;
-            margin: 15px auto 0; /* Center the underline */
-            border-radius: 2px;
-        }
-        section p {
-            font-size: 1.2rem; /* Larger paragraph text */
-            color: #B0B0B0; /* Softer text color */
-            margin-bottom: 3rem;
-            max-width: 800px; /* Constrain paragraph width */
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Cards */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Larger min-width for cards */
-            gap: 2.5rem; /* More space between cards */
-        }
-        .card {
-            padding: 2rem; /* More padding inside cards */
-            border: 1px solid #3920B0; /* Softer border */
-            border-radius: 12px; /* More rounded corners */
-            text-align: center;
-            background: #ffffff; /* Darker card background */
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            overflow: hidden; /* For pseudo-elements */
-        }
-        .card::before {
+        .nav-links a.active { color: var(--accent); }
+        .nav-links a.active::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(255, 152, 0, 0.1) 0%, transparent 70%);
-            transition: transform 0.5s ease-out;
-            transform: scale(0);
-            z-index: 0;
-        }
-        .card:hover::before {
-            transform: scale(1);
-        }
-        .card:hover {
-            transform: translateY(-10px); /* More pronounced lift */
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5); /* Stronger shadow */
-            border-color: #3920B0; /* Highlight border on hover */
-        }
-        .card img {
-            height: 90px; /* Larger icons */
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 5px rgba(255, 152, 0, 0.5)); /* Glow effect on icons */
-        }
-        .card h3 {
-            font-size: 1.7rem; /* Larger card titles */
-            color: #3920B0;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        .card p {
-            font-size: 1rem; /* Slightly smaller card text */
-            color: #A0A0A0;
-            margin-bottom: 0; /* Remove bottom margin */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
         }
 
-        /* Contact Section */
-        .contact-boxes {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem; /* More space between contact boxes */
-            max-width: 600px;
-            margin: 0 auto;
+        section { padding: 140px 8% 100px; min-height: 80vh; max-width: 1400px; margin: auto; }
+        h2.section-title { font-size: 3rem; text-align: center; margin-bottom: 50px; font-weight: 800; letter-spacing: -1px; }
+
+        /* Stats Cards */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-top: 60px; }
+        .stat-card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); padding: 40px 20px; border-radius: 24px; text-align: center; backdrop-filter: blur(10px); }
+        .stat-number { display: block; font-size: 3.5rem; font-weight: 800; color: var(--accent); }
+        .stat-label { color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; font-weight: 700; }
+
+        /* Core Expertise */
+        .expertise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .expertise-card {
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
+            padding: 50px 40px; border-radius: 30px; position: relative; transition: 0.4s; overflow: hidden;
         }
-        .contact-box a {
-            display: flex; /* Use flex for icon and text alignment */
-            align-items: center;
-            justify-content: center;
-            gap: 15px; /* Space between icon and text */
-            padding: 1.2rem 1.5rem; /* More padding */
-            border: 2px solid #3920B0;
-            border-radius: 10px; /* More rounded corners */
-            font-weight: 700;
-            color: #3920B0;
+        .expertise-card:hover { transform: translateY(-10px); background: rgba(57, 32, 176, 0.1); border-color: var(--primary); }
+        .expertise-number { font-size: 4rem; font-weight: 900; color: rgba(255,255,255,0.03); position: absolute; top: 10px; right: 20px; }
+
+        /* Marquee */
+        .marquee-container { width: 100vw; margin-left: calc(-50vw + 50%); overflow: hidden; padding: 60px 0; background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .marquee-content { display: flex; gap: 100px; animation: scroll 35s linear infinite; width: max-content; }
+        .client-name { font-size: 2rem; font-weight: 800; color: rgba(255, 255, 255, 0.2); text-transform: uppercase; transition: 0.3s; }
+        .client-name:hover { color: var(--accent); }
+
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* MODERN CONNECT SECTION */
+        .connect-container {
+            background: linear-gradient(145deg, rgba(57, 32, 176, 0.1), rgba(255, 172, 28, 0.05));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 40px;
+            padding: 80px 40px;
             text-align: center;
-            transition: all 0.3s ease-in-out;
+            backdrop-filter: blur(10px);
+        }
+        .contact-links { display: flex; flex-direction: column; gap: 20px; align-items: center; margin-top: 40px; }
+        .contact-item {
+            display: flex; align-items: center; gap: 15px;
+            background: rgba(255,255,255,0.05);
+            padding: 20px 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-decoration: none;
+            color: #fff;
             font-size: 1.2rem;
+            font-weight: 600;
+            transition: 0.3s;
+            width: 100%;
+            max-width: 450px;
+            justify-content: center;
         }
-        .contact-box a:hover {
-            background: #3920B0;
-            color: #ffffff; /* Dark text on hover */
-            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
-            transform: translateY(-3px);
+        .contact-item:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(57, 32, 176, 0.4);
         }
+        .contact-item span { color: var(--accent); }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background: #ffffff; /* Slightly darker footer */
-            color: #606060; /* Softer text color */
-            font-size: 0.9rem;
-            border-top: 0px solid #1A1A1A;
-        }
-
-        /* Keyframe Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-    }
-}
+        footer { padding: 60px; text-align: center; color: var(--text-dim); font-size: 0.8rem; }
     </style>
 </head>
 <body>
+
     <nav>
-        <div class="nav-left">
-            <img src="/Sunriselogo-removebg-preview.png" alt="Sunrise Insights Logo - AI and Data Consulting">
-            <span><span class="logo-text">Sunrise</span> <span class="insights">Insights</span></span>
-        </div>
-        <div class="hamburger" id="hamburger">
-            <div></div><div></div><div></div>
-        </div>
-        <div class="nav-links" id="nav-links">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#projects" class="nav-link">Our Work</a>
-            <a href="#contact" class="nav-link">Connect</a>
+        <a href="#home" class="nav-left">
+            <img src="Sunriselogo-removebg-preview.png" alt="Sunrise Insights Logo" class="logo-img">
+            <span class="logo-text">Sunrise <span class="insights-logo">Insights</span></span>
+        </a>
+        <div class="nav-links" id="navbar">
+            <a href="#home" class="nav-item active">Home</a>
+            <a href="#services" class="nav-item">Expertise</a>
+            <a href="#projects" class="nav-item">Portfolio</a>
+            <a href="#contact" class="nav-item">Connect</a>
         </div>
     </nav>
 
     <main>
         <section id="home">
-            <h2>Redefining Your Path to Business Success with Data & AI</h2>
-            <p>At Sunrise Insights, we believe every business holds untapped potential. We leverage cutting-edge AI, deep analytics, and bespoke data strategies to transform raw information into actionable wisdom, guiding your brand towards unprecedented growth and innovation.</p>
+            <div class="reveal">
+                <h2 style="font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem;">
+                    Unlocking Value.<br><span style="color:var(--primary)">Fueling Innovation.</span>
+                </h2>
+                <p style="font-size: 1.25rem; color: var(--text-dim); max-width: 750px; margin-bottom: 40px;">Bespoke AI and Analytics strategies designed to turn complex data into your competitive advantage.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card"><span class="stat-number" data-target="6">0</span><span class="stat-label">Happy Clients</span></div>
+                <div class="stat-card"><span class="stat-number" data-target="10">0</span><span class="stat-label">Projects Delivered</span></div>
+                <div class="stat-card"><span class="stat-number" data-target="15">0</span><span class="stat-label">Insights Reports</span></div>
+            </div>
         </section>
 
         <section id="services">
-            <h2>Our Core Data & AI Consulting Services</h2>
-            <p>We provide a comprehensive suite of services designed to empower your business with clarity and foresight, helping you make smarter, faster decisions.</p>
-            <div class="cards">
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3043/3043211.png" alt="Deep Data Insights Icon">
-                    <h3>Deep Data Insights & Analysis</h3>
-                    <p>Go beyond surface-level metrics. We will dive deep into your data, uncovering hidden patterns, correlations, and opportunities that drive strategic advantage.</p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3752/3752002.png" alt="Business Intelligence Dashboard Icon">
-                    <h3>Actionable Business Intelligence</h3>
-                    <p>Visualize your business performance with dynamic, intuitive dashboards. Get insights tailored to your needs for informed decision-making.</p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/8799/8799197.png" alt="Intelligent AI Solutions Icon">
-                    <h3>Intelligent AI Solutions & Automation</h3>
-                    <p>Harness the power of Artificial Intelligence to generate the best ideas and insights, automating processes and enhancing efficiency for your business.</p>
-                </p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/8799/8799214.png" alt="Strategic Data Consulting Icon">
-                    <h3>End-to-End Strategic Consulting</h3>
-                    <p>From data collection to implementation, we provide comprehensive end-to-end consulting to ensure your data strategy aligns perfectly with your business goals.</p>
-                </div>
+            <h2 class="section-title">Core Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card"><span class="expertise-number">01</span><h3>Data Analytics</h3><p>Deep dives into raw data to identify growth drivers and operational bottlenecks.</p></div>
+                <div class="expertise-card"><span class="expertise-number">02</span><h3>Business Consultancy</h3><p>Strategic roadmaps tailored for scaling and long-term profitability.</p></div>
+                <div class="expertise-card"><span class="expertise-number">03</span><h3>Automation</h3><p>Custom AI workflows to eliminate repetitive tasks and reduce human error.</p></div>
             </div>
         </section>
 
         <section id="projects">
-            <h2>Our Best Data & AI Projects</h2>
-            <p>Discover how Sunrise Insights has helped diverse businesses achieve remarkable results through data-driven innovation and intelligent AI solutions.</p>
-            <div class="cards">
-                <div class="card">
-                    <img src="next_gen_world_logo-removebg-preview.png" alt="Edtech">
-                    <h3>Optimizing Sales Insights for The NextGen World</h3>
-                    <p>We implemented AI-powered Data Solutions to significantly increase and optimize sales performance for The NextGen World, an EdTech Company.</p>
-                </div>
-                <div class="card">
-                    <img src="unicorn_mart_logo-removebg-preview.png" alt="Wholesale and Retail Mart">
-                    <h3>Customer Insights & Inventory Management for Unicorn Mart</h3>
-                    <p>For a Wholesale and Retail Mart,we helped by gathering crucial customer insights to improve retention and optimize product offerings.</p>
-                </div>
-                <div class="card">
-                    <img src="loger_logo-removebg-preview.png" alt="Logistics">
-                    <h3>AI-Driven Product Analysis for a Local Provision Store</h3>
-                    <p>We provided advanced product and goods analysis using AI to enhance and deploy the startup.</p>
+            <h2 class="section-title">Trusted By Innovators</h2>
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span class="client-name">The NextGen World</span>
+                    <span class="client-name">Unicorn Mart</span>
+                    <span class="client-name">Jinvani Consultancy</span>
+                    <span class="client-name">Famvors Foods</span>
+                    <span class="client-name">TG Stores</span>
+                    <span class="client-name">ABC Labs</span>
+                    <span class="client-name">The NextGen World</span>
+                    <span class="client-name">Unicorn Mart</span>
+                    <span class="client-name">Jinvani Consultancy</span>
+                    <span class="client-name">Famvors Foods</span>
+                    <span class="client-name">TG Stores</span>
+                    <span class="client-name">ABC Labs</span>
                 </div>
             </div>
         </section>
 
         <section id="contact">
-            <h2>Let's Connect and Drive Your Business Forward</h2>
-            <p>Ready to unlock the full potential of your business? Reach out to us, and let's discuss how data and AI can drive your success.</p>
-            <div class="contact-boxes">
-                <div class="contact-box">
-                    <a href="mailto:harsh@sunriseinsights.in">📧 harsh@sunriseinsights.in</a>
-                </div>
-                <div class="contact-box">
-                    <a href="tel:+919173159232">📞 +91 9173159232</a>
+            <div class="connect-container reveal">
+                <h2 style="font-size: 3rem; margin-bottom: 10px;">Ready to Start?</h2>
+                <p style="color: var(--text-dim);">Let's discuss how data and AI can drive your business forward.</p>
+                
+                <div class="contact-links">
+                    <a href="mailto:harsh@sunriseinsights.in" class="contact-item">
+                        <span>📧</span> harsh@sunriseinsights.in
+                    </a>
+                    <a href="tel:+919173159232" class="contact-item">
+                        <span>📞</span> +91 9173159232
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Sunrise Insights. All rights reserved.</p>
+        <p>&copy; 2025 Sunrise Insights. Precision. Insight. Growth.</p>
     </footer>
 
     <script>
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-        const navItems = document.querySelectorAll('.nav-link');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('open');
-        });
-
-        navItems.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('open');
-            });
-        });
-
-        const sections = document.querySelectorAll('main section');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const scrollY = window.scrollY + 150; // Increased offset for better detection
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            const lastSection = document.getElementById('contact');
-            if (lastSection) {
-                const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50;
-                if (atBottom || scrollY >= lastSection.offsetTop + lastSection.clientHeight / 2) {
-                    current = lastSection.getAttribute('id');
-                }
-            }
-
-            navItems.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        window.addEventListener('load', () => {
-            window.dispatchEvent(new Event('scroll')); // Trigger scroll on load
-            gsap.registerPlugin(ScrollTrigger);
-            gsap.utils.toArray('section').forEach(section => {
-                gsap.from(section, {
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                        toggleActions: "play none none none"
-                    },
-                    y: 40,
-                    opacity: 0,
-                    duration: 1,
-                    ease: 'power3.out'
+        // Stats Counter Logic
+        function runCounters() {
+            document.querySelectorAll('.stat-number').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                ScrollTrigger.create({
+                    trigger: counter,
+                    start: "top 90%",
+                    onEnter: () => {
+                        let count = 0;
+                        const update = () => {
+                            if (count < target) {
+                                count += target/50;
+                                counter.innerText = Math.ceil(count) + "+";
+                                setTimeout(update, 30);
+                            } else { counter.innerText = target + "+"; }
+                        };
+                        update();
+                    }
                 });
             });
+        }
+
+        // Scrollspy Logic
+        function initScrollSpy() {
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll(".nav-item");
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach(section => {
+                    if (window.pageYOffset >= (section.offsetTop - 150)) { current = section.getAttribute("id"); }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href").includes(current)) { link.classList.add("active"); }
+                });
+            });
+        }
+
+        window.addEventListener('load', () => {
+            gsap.registerPlugin(ScrollTrigger);
+            runCounters();
+            initScrollSpy();
+            gsap.from(".reveal", { y: 40, opacity: 0, duration: 1 });
         });
     </script>
 </body>
